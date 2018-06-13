@@ -1,0 +1,10 @@
+FROM ruby:2.3-alpine
+
+RUN apk update && apk upgrade
+
+RUN mkdir -p /opt/app
+WORKDIR /opt/app/
+COPY Gemfile* /opt/app/
+
+RUN bundle install
+
