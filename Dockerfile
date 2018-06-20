@@ -1,4 +1,4 @@
-FROM base-test:v1
+FROM pcr-internal.puppet.net/joel.allen/sinatra_poc
 
 WORKDIR /opt/app/
 COPY app.rb config.ru /opt/app/
