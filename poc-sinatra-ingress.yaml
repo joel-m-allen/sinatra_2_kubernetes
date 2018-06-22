@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "nginx"
+  name: poc-sinatra-ingress
+  namespace: forge-dev
+spec:
+  backend:
+    serviceName: poc-sinatra-svc
+    servicePort: 80
+  rules:
+  - host: poc-sinatra.forge-dev.k8s.puppet.net
+    http:
+      paths:
+      - backend:
+          serviceName: poc-sinatra-svc
+          servicePort: 80
+        path: /
+  tls:
+  - secretName: poc-sinatra.forge-dev.k8s.puppet.net-tls
+    hosts:
+    - poc-sinatra.forge-dev.k8s.puppet.net
